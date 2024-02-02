@@ -1,15 +1,18 @@
+# Import necessary libraries
 import re
 import json
 import requests
 from utils import loader, logger
-
-
 from utils.extract import *
 
 
+# Main function
 def main():
+    """Main Function
+    """
     json_data: list = loader.load_json("config.json")
     final_data = {}
+    # Loop through URLs
     for link in json_data:
         func_name = re.findall(
             r"[a-zA-Z0-9]+\.[a-zA-Z]+/", link)
