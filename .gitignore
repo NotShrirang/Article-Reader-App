@@ -1,1 +1,5 @@
+assignment3/
 venv/
+*.log
+*.json
+/utils/__pycache__/
