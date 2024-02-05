@@ -10,14 +10,14 @@ def cbsnews(response) -> dict:
         response (string): response content got from fetching news article url
 
     Returns:
-        dict: containing title and body 
+        dict: containing title and body
     """
     try:
         title = bs4.BeautifulSoup(
             response, features='lxml').find_all("h1")[0].text
         body_element_text_list = []
-        for p in bs4.BeautifulSoup(response, features='lxml').find_all("p"):
-            body_element_text_list.append(p.text.replace("\n", " ").strip())
+        for p in list(bs4.BeautifulSoup(response, features='lxml').find_all("p")):
+            body_element_text_list.append(p.text)
         body = ", ".join(body_element_text_list)
         return {'title': title, 'body': body}
     except Exception as e:
@@ -31,14 +31,14 @@ def thewire(response) -> dict:
         response (string): response content got from fetching news article url
 
     Returns:
-        dict: containing title and body 
+        dict: containing title and body
     """
     try:
         title = bs4.BeautifulSoup(
             response, features='lxml').find_all("h1")[0].text
         body_element_text_list = []
         for p in list(bs4.BeautifulSoup(response, features='lxml').select("div>p")):
-            body_element_text_list.append(p.text.replace("\n", " ").strip())
+            body_element_text_list.append(p.text)
         body = ", ".join(body_element_text_list)
         return {'title': title, 'body': body}
     except Exception as e:

@@ -34,9 +34,15 @@ def main():
             final_data[link] = data
             logger.log_message("Fetching done!", level=0)
         logger.log_message("Dumping data into output.json...", level=0)
-        # Dump data into output.json
-        with open("output.json", 'w') as f:
-            json.dump(final_data, f, indent=4)
+        # Dump data into output.txt
+        final_str = ""
+        for k, v in final_data.items():
+            final_str += "URL: " + k
+            final_str += "\nTitle: " + v['title'] + \
+                "\nContent: " + \
+                v['body'] + "\n\n############################################\n\n"
+        with open("output.txt", 'w') as f:
+            f.write(final_str)
         time_diff = timeit.default_timer() - start_time
         logger.log_message(
             f"Process completed in: {time_diff} seconds.", level=0)
