@@ -16,9 +16,9 @@ def cbsnews(response) -> dict:
         title = bs4.BeautifulSoup(
             response, features='lxml').find_all("h1")[0].text
         body_element_text_list = []
-        for p in list(bs4.BeautifulSoup(response, features='lxml').find_all("p")):
+        for p in list(bs4.BeautifulSoup(response, features='lxml').find_all("p")[3:-4]):
             body_element_text_list.append(p.text)
-        body = ", ".join(body_element_text_list)
+        body = "\n".join(body_element_text_list)
         return {'title': title, 'body': body}
     except Exception as e:
         logger.log_message(e.args, level=1)
@@ -39,7 +39,7 @@ def thewire(response) -> dict:
         body_element_text_list = []
         for p in list(bs4.BeautifulSoup(response, features='lxml').select("div>p")):
             body_element_text_list.append(p.text)
-        body = ", ".join(body_element_text_list)
+        body = "\n".join(body_element_text_list)
         return {'title': title, 'body': body}
     except Exception as e:
         logger.log_message(e.args, level=1)

@@ -37,9 +37,9 @@ def main():
         final_str = ""
         for k, v in final_data.items():
             final_str += "URL: " + k
-            final_str += "\nTitle: " + v['title'] + \
-                "\nContent: " + \
-                v['body'] + "\n\n############################################\n\n"
+            final_str += "\nTITLE: " + v['title'] + \
+                "\nCONTENT: " + \
+                v['body'] + "\n\n" + "="*200 + "\n\n"
         with open("output.txt", 'w') as f:
             f.write(final_str)
         time_diff = timeit.default_timer() - start_time
