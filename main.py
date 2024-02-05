@@ -1,5 +1,4 @@
 # Import necessary libraries
-import json
 import requests
 from utils import fetch, loader, logger
 from utils.extract import *
